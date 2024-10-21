@@ -43,7 +43,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider theme={theme} colorMode="light">
           <UserProvider>
-            <Authenticator>
+            <Authenticator signUpAttributes={["preferred_username"]}>
               <Header />
               <Navbar />
               <main className="main">{children}</main>
