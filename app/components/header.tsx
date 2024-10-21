@@ -13,6 +13,7 @@ import { fetchUserAttributes } from "aws-amplify/auth";
 
 const Header = () => {
   const { userAttributes, setUserAttributes } = useUserContext();
+  console.log(userAttributes);
   const { signOut } = useAuthenticator();
   const router = useRouter();
 
@@ -38,8 +39,7 @@ const Header = () => {
             menuAlign="end"
             trigger={
               <MenuButton variation="primary">
-                {/* {userAttributes?.preferred_username || "User"} */}
-                {userAttributes?.name || "User"}
+                {userAttributes?.preferred_username || "User"}
               </MenuButton>
             }
           >

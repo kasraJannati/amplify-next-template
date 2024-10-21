@@ -17,19 +17,19 @@ const EditProfilePage = () => {
     variation: "info" | "error" | "warning" | "success";
   } | null>(null);
 
-  // Handle name update
+  // Handle preferred_username update
   const handleUpdateUsername = async () => {
     try {
       await updateUserAttribute({
         userAttribute: {
-          attributeKey: "name",
+          attributeKey: "preferred_username",
           value: newUsername,
         },
       });
-      // Update the context with the new name
+      // Update the context with the new preferred_username
       setUserAttributes((prevAttributes: any) => ({
         ...prevAttributes,
-        name: newUsername,
+        preferred_username: newUsername,
       }));
       setAlertMessage({
         text: "Username updated successfully!",
@@ -107,7 +107,7 @@ const EditProfilePage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <section className="bg-white p-4 rounded flex flex-col gap-4">
-            <h3>Update Name</h3>
+            <h3>Update Preferred Username</h3>
             <TextField
               label="Enter new username"
               value={newUsername}
