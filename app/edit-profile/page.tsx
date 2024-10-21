@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AccountSettings, Button, TextField } from "@aws-amplify/ui-react";
-import {
-  fetchUserAttributes,
-  updateUserAttribute,
-  confirmUserAttribute,
-} from "aws-amplify/auth";
+import { updateUserAttribute, confirmUserAttribute } from "aws-amplify/auth";
 import { AlertComponent } from "../components/alert";
 import { useUserContext } from "../context/UserContext";
 
@@ -20,19 +16,6 @@ const EditProfilePage = () => {
     text: string;
     variation: "info" | "error" | "warning" | "success";
   } | null>(null);
-
-  // Fetch user attributes
-  useEffect(() => {
-    const fetchAttributes = async () => {
-      try {
-        const attributes = await fetchUserAttributes();
-        setUserAttributes(attributes);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchAttributes();
-  }, []);
 
   // Handle preferred_username update
   const handleUpdateUsername = async () => {
