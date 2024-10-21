@@ -20,7 +20,7 @@ export type Schema = ClientSchema<typeof schema>;
 export const data = defineData({
   schema,
   authorizationModes: {
-    // defaultAuthorizationMode: "apiKey",
+    // defaultAuthorizationMode: "apiKey",  // Important: API Key is used for allow.publicApiKey() rules
     defaultAuthorizationMode: "userPool",
     apiKeyAuthorizationMode: {
       expiresInDays: 30,
