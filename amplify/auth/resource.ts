@@ -11,9 +11,13 @@ export const auth = defineAuth({
   // Add attributes
   userAttributes: {
     // preferredUsername: {
-    //   mutable: true, // It's changeable
+    //   mutable: false, // It's changeable
     //   required: true,
     // },
+    fullname: {
+      mutable: true, // It's changeable
+      required: true,
+    },
     // email: {
     //   mutable: true,
     //   required: true,

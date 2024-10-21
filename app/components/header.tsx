@@ -38,7 +38,8 @@ const Header = () => {
             menuAlign="end"
             trigger={
               <MenuButton variation="primary">
-                {userAttributes?.preferred_username || "User"}
+                {/* {userAttributes?.preferred_username || "User"} */}
+                {userAttributes?.name || "User"}
               </MenuButton>
             }
           >
