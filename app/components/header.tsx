@@ -30,6 +30,19 @@ const Header = () => {
     fetchAttributes();
   }, []);
 
+  const handleSignOut = async () => {
+    try {
+      // Clear user context, local storage and session
+      setUserAttributes(null);
+      localStorage.clear();
+      sessionStorage.clear();
+      signOut();
+      router.push("/");
+    } catch (error) {
+      console.log("Error during sign out:", error);
+    }
+  };
+
   return (
     <>
       <header>
@@ -47,7 +60,7 @@ const Header = () => {
               Edit profile
             </MenuItem>
             <Divider />
-            <MenuItem onClick={signOut}>Sign out</MenuItem>
+            <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
           </Menu>
         </section>
       </header>
