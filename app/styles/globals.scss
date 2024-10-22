@@ -15,7 +15,6 @@ body {
   overflow-x: hidden;
 }
 body{
-  // background: linear-gradient(180deg, rgb(117, 81, 194), rgba(255, 255, 255, 0.475));
   background: linear-gradient(180deg, #1C3A5A, #e0e0e0);
 }
 a {
@@ -112,21 +111,33 @@ nav {
 }
 /* table */
 table, .head-table{
-  min-width: 600px !important;
+  min-width: 500px !important;
+}
+.scroll-container{
+  -webkit-overflow-scrolling: touch;
 }
 /* auth container */
 [data-amplify-authenticator]{
   min-height: 100vh;
 }
+/* small screen */
 @media (max-width: 900px) {
   nav{
-    width: 50px;
+    width: 40px;
+    align-items: center;
+    svg{
+      margin:0 !important;
+    }
     span{
       display: none;
     }
   }
   .main{
-    margin-left: 50px;
+    margin-left: 40px;
+    padding: 20px 10px 60px 10px;
+  }
+  table button{
+    display: block !important
   }
 }
 

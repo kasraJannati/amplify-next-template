@@ -124,8 +124,8 @@ export default function App() {
           <Loader size="large" variation="linear" />
         </div>
       ) : (
-        <section className="bg-white p-2 rounded overflow-x-auto">
-          <div className="flex items-center justify-between mb-6 bg-white p-4 head-table">
+        <section className="bg-white p-2 rounded overflow-x-auto scroll-container">
+          <div className="flex items-center justify-between mb-6 bg-white py-4 head-table">
             <div className="w-full pr-2">
               <TextField
                 label=""
@@ -145,8 +145,8 @@ export default function App() {
             <TableHead>
               <TableRow>
                 <TableCell as="th">Title</TableCell>
-                <TableCell as="th">Number of tasks</TableCell>
-                <TableCell as="th">Completion status</TableCell>
+                <TableCell as="th">Task #</TableCell>
+                <TableCell as="th">Status</TableCell>
                 <TableCell as="th">Actions</TableCell>
               </TableRow>
             </TableHead>
