@@ -19,6 +19,7 @@ import {
 import { PopupComponent } from "./components/popup";
 import { CreateProjectForm } from "./components/createProjectForm";
 import { EditProjectForm } from "./components/editProjectForm";
+import { useRouter } from "next/navigation";
 import type { Schema } from "@/amplify/data/resource";
 
 Amplify.configure(outputs);
@@ -42,6 +43,8 @@ export default function App() {
     text: string;
     variation: "info" | "error" | "warning" | "success";
   } | null>(null);
+  const [taskCounts, setTaskCounts] = useState<Record<string, number>>({}); // Fetch tasks for each project
+  const router = useRouter();
 
   useEffect(() => {
     listProjects();
@@ -116,6 +119,32 @@ export default function App() {
     }
   };
 
+  const showTask = (project: Schema["Project"]["type"]) => {
+    console.log(project, "project");
+    router.push(`/tasks?projectID=${project.id}`);
+  };
+
+  // Get the length of tasks
+  useEffect(() => {
+    if (projects.length > 0) {
+      projects.forEach((project) => fetchTaskCount(project.id));
+    }
+  }, [projects]);
+  const fetchTaskCount = (projectId: string) => {
+    client.models.Task.observeQuery({
+      filter: {
+        projectID: { eq: projectId },
+      },
+    }).subscribe({
+      next: (data) => {
+        setTaskCounts((prevCounts) => ({
+          ...prevCounts,
+          [projectId]: data.items.length, // Set the count of tasks for the project
+        }));
+      },
+    });
+  };
+
   return (
     <>
       <h2 className="mb-6">Projects</h2>
@@ -153,24 +182,36 @@ export default function App() {
             <TableBody>
               {filteredProjects.length > 0 ? (
                 filteredProjects.map((project) => (
-                  <TableRow key={project.id}>
+                  <TableRow
+                    key={project.id}
+                    onClick={() => showTask(project)}
+                    className="rowClickable"
+                  >
                     <TableCell>{project.title}</TableCell>
-                    <TableCell>{project.numberOfTasks}</TableCell>
+                    <TableCell>{taskCounts[project.id]}</TableCell>
                     <TableCell>{project.completionStatus}</TableCell>
-                    <TableCell>
+                    <TableCell className="actionCell">
                       <span className="mr-2">
                         <Button
-                          onClick={() => editProject(project)}
+                          onClick={(event) => {
+                            event.stopPropagation(); // Prevent row click
+                            editProject(project);
+                          }}
                           variation="primary"
+                          size="small"
                         >
                           Edit
                         </Button>
                       </span>
                       <span>
                         <Button
-                          onClick={() => deleteProject(project.id)}
+                          onClick={(event) => {
+                            event.stopPropagation(); // Prevent row click
+                            deleteProject(project.id);
+                          }}
                           variation="primary"
                           colorTheme="error"
+                          size="small"
                         >
                           Delete
                         </Button>

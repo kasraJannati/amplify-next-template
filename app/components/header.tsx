@@ -15,7 +15,6 @@ import { fetchUserAttributes } from "aws-amplify/auth";
 
 const Header = () => {
   const { userAttributes, setUserAttributes } = useUserContext();
-  console.log(userAttributes);
   const { signOut } = useAuthenticator();
   const router = useRouter();
 

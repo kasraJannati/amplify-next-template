@@ -36,7 +36,7 @@ export const CreateProjectForm = ({ onFormResponse }: FormProps) => {
   return (
     <section className="modal-view">
       <div>
-        <h2 className="text-black">Add Form</h2>{" "}
+        <h2 className="text-black">Add Form</h2>
         <div className="my-4">
           <Divider size="small" />
         </div>

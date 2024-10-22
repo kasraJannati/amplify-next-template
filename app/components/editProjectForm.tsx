@@ -50,7 +50,7 @@ export const EditProjectForm = ({ project, onFormResponse }: EditFormProps) => {
   return (
     <section className="modal-view">
       <div>
-        <h2 className="text-black">Update Form</h2>
+        <h2 className="text-black">Edit Project</h2>
         <div className="my-4">
           <Divider size="small" />
         </div>

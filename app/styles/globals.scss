@@ -112,13 +112,53 @@ nav {
 /* table */
 table, .head-table{
   min-width: 500px !important;
-}
-.scroll-container{
-  -webkit-overflow-scrolling: touch;
+  .rowClickable{
+    cursor: pointer;
+    &:hover{
+      background-color: #c1c6ca !important;
+    }
+  }
 }
 /* auth container */
 [data-amplify-authenticator]{
   min-height: 100vh;
+}
+/* date picker */
+.datePicker {
+  span.label {
+    color: var(--amplify-components-field-label-color);
+  }
+  input {
+    color: var(--amplify-components-fieldcontrol-color);
+    font-size: var(--amplify-components-fieldcontrol-font-size);
+    line-height: var(--amplify-components-fieldcontrol-line-height);
+    padding-block-start: var(--amplify-components-fieldcontrol-padding-block-start);
+    padding-block-end: var(--amplify-components-fieldcontrol-padding-block-end);
+    padding-inline-start: var(--amplify-components-fieldcontrol-padding-inline-start);
+    padding-inline-end: var(--amplify-components-fieldcontrol-padding-inline-end);
+    transition: all var(--amplify-components-fieldcontrol-transition-duration);
+    width: 100%;
+    border-color: var(--amplify-components-fieldcontrol-border-color);
+    border-radius: var(--amplify-components-fieldcontrol-border-radius);
+    border-style: var(--amplify-components-fieldcontrol-border-style);
+    border-width: var(--amplify-components-fieldcontrol-border-width);
+    outline-color: var(--amplify-components-fieldcontrol-outline-color);
+    outline-style: var(--amplify-components-fieldcontrol-outline-style);
+    outline-width: var(--amplify-components-fieldcontrol-outline-width);
+    outline-offset: var(--amplify-components-fieldcontrol-outline-offset);
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    display: inline-block;
+    --amplify-components-fieldcontrol-color: var(--amplify-components-input-color);
+    --amplify-components-fieldcontrol-border-color: var(--amplify-components-input-border-color);
+    --amplify-components-fieldcontrol-font-size: var(--amplify-components-input-font-size);
+    --amplify-components-fieldcontrol-focus-border-color:
+  }
+  input:focus {
+    border-color: var(--amplify-components-fieldcontrol-focus-border-color);
+    box-shadow: var(--amplify-components-fieldcontrol-focus-box-shadow);
+  }
 }
 /* small screen */
 @media (max-width: 900px) {
@@ -138,6 +178,11 @@ table, .head-table{
   }
   table button{
     display: block !important
+  }
+  table .actionCell{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 }
 

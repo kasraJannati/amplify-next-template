@@ -14,14 +14,14 @@ const Navbar = () => {
           <FaProjectDiagram className="mr-2" />
           <span>Projects</span>
         </Link>
-        <Link
+        {/* <Link
           href="/tasks"
           className="text-black flex items-center"
           title="Tasks"
         >
           <GrTasks className="mr-2" />
           <span>Tasks</span>
-        </Link>
+        </Link> */}
       </nav>
     </>
   );

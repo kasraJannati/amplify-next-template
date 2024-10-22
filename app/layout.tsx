@@ -9,6 +9,7 @@ import Header from "./components/header";
 import Navbar from "./components/navbar";
 import { UserProvider } from "./context/UserContext";
 import "./styles/globals.scss";
+import "react-datepicker/dist/react-datepicker.css";
 
 Amplify.configure(outputs);
 
