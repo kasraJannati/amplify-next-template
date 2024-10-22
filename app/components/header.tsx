@@ -5,7 +5,9 @@ import {
   MenuItem,
   useAuthenticator,
   Divider,
+  Image,
 } from "@aws-amplify/ui-react";
+import Link from "next/link";
 import "@aws-amplify/ui-react/styles.css";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../context/UserContext";
@@ -46,7 +48,9 @@ const Header = () => {
   return (
     <>
       <header>
-        <h1>Abloomify</h1>
+        <Link href="/">
+          <Image alt="Amplifylogo" src="/abloomify.jpg" width="200px" />
+        </Link>
         <section>
           <Menu
             menuAlign="end"

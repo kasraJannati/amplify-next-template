@@ -15,7 +15,8 @@ body {
   overflow-x: hidden;
 }
 body{
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgba(255, 255, 255, 0.475));
+  // background: linear-gradient(180deg, rgb(117, 81, 194), rgba(255, 255, 255, 0.475));
+  background: linear-gradient(180deg, #1C3A5A, #e0e0e0);
 }
 a {
   color: inherit;
@@ -27,7 +28,7 @@ h1 {
   font-size: 30px;
 }
 h2 {
-  color: #151515;
+  color: #ffffff;
   font-size: 25px;
 }
 h3 {
@@ -43,12 +44,41 @@ h3 {
   width: 100%!important;
   z-index: 3 !important;
 }
+/* popup component */
+.popup-component{
+  .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+  }
+}
+/* modal view style */
+.modal-view{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  &>div {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+  }
+}
 /* header */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: #F5F5F5;
   padding: 5px 10px;
   z-index: 2;
   position: fixed;
@@ -56,11 +86,15 @@ header {
   top:0;
   right: 0;
   left: 0;
+  box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.3); 
+  a{
+    display: inherit !important;
+  }
 }
 /* navbar */
 nav {
   position: fixed;
-  background-color: #4d2ba8;
+  background-color: #f5f5f5;
   width: 150px;
   left: 0;
   top: 50px;
@@ -68,13 +102,31 @@ nav {
   height: 100%;
   z-index: 1;
   padding: 20px 10px;
- 
+  box-shadow: 5px 0px 10px 5px rgba(0, 0, 0, 0.1);
 }
-
+/* main content */
 .main{
   margin-left: 150px;
   margin-top: 50px;
   padding: 20px 40px 60px 40px;
 }
-
+/* table */
+table, .head-table{
+  min-width: 600px !important;
+}
+/* auth container */
+[data-amplify-authenticator]{
+  min-height: 100vh;
+}
+@media (max-width: 900px) {
+  nav{
+    width: 50px;
+    span{
+      display: none;
+    }
+  }
+  .main{
+    margin-left: 50px;
+  }
+}
 
