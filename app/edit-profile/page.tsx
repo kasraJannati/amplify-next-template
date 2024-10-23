@@ -101,6 +101,10 @@ const EditProfilePage = () => {
     });
   };
 
+  const clearAlert = () => {
+    setAlertMessage(null);
+  };
+
   return (
     <>
       <h2 className="mb-6">Edit Profile</h2>
@@ -162,6 +166,7 @@ const EditProfilePage = () => {
           text={alertMessage.text}
           variation={alertMessage.variation}
           autoDismiss={true}
+          clearAlert={clearAlert}
         />
       )}
     </>

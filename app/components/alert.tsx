@@ -5,6 +5,7 @@ type AlertType = {
   text: string;
   variation: "info" | "error" | "warning" | "success";
   autoDismiss: boolean;
+  clearAlert: () => void;
   duration?: number;
 } & AlertProps;
 
@@ -13,6 +14,7 @@ export const AlertComponent = ({
   variation,
   duration = 3000,
   autoDismiss,
+  clearAlert, // Destructure clearAlert
   ...rest
 }: AlertType) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -21,6 +23,7 @@ export const AlertComponent = ({
     if (autoDismiss) {
       const timer = setTimeout(() => {
         setIsVisible(false);
+        clearAlert();
       }, duration);
       return () => clearTimeout(timer); // Clean up the timer
     }

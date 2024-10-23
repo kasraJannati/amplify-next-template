@@ -145,6 +145,10 @@ export default function App() {
     });
   };
 
+  const clearAlert = () => {
+    setAlertMessage(null);
+  };
+
   return (
     <>
       <h2 className="mb-6">Projects</h2>
@@ -234,6 +238,7 @@ export default function App() {
           text={alertMessage.text}
           variation={alertMessage.variation}
           autoDismiss={true}
+          clearAlert={clearAlert}
         />
       )}
       {_showPopup && (

@@ -131,6 +131,10 @@ const TasksPage = () => {
     }
   };
 
+  const clearAlert = () => {
+    setAlertMessage(null);
+  };
+
   return (
     <>
       <h2 className="mb-6 flex">
@@ -230,6 +234,7 @@ const TasksPage = () => {
           text={alertMessage.text}
           variation={alertMessage.variation}
           autoDismiss={true}
+          clearAlert={clearAlert}
         />
       )}
       {_showPopup && (
