@@ -21,7 +21,7 @@ const client = generateClient<Schema>();
 export const CreateTaskForm = ({ onFormResponse, projectId }: FormProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState<Date | null>(new Date());
+  const [dueDate, setDueDate] = useState<Date | null>(null);
   const [priority, setPriority] = useState("Medium");
   const [status, setStatus] = useState("Not Started");
 
@@ -101,6 +101,7 @@ export const CreateTaskForm = ({ onFormResponse, projectId }: FormProps) => {
               selected={dueDate}
               onChange={(date) => setDueDate(date)}
               dateFormat="yyyy/MM/dd"
+              required
             />
           </div>
 
