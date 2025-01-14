@@ -21,17 +21,24 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install Amplify CLI
-        run: npx ampx sandbox
+      - name: Setup AWS Credentials for Amplify
+        run: |
+          echo "[profile amplify]" > ~/.aws/credentials
+          echo "aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
+          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-2"
 
-      # - name: Initialize Amplify Environment
-      #   run: |
-      #     npm install -g @aws-amplify/cli
-      #     amplify pull --accessKeyId $AWS_ACCESS_KEY_ID --secretAccessKey $AWS_SECRET_ACCESS_KEY --region $AWS_REGION --yes
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      # AWS_REGION: "us-east-2"
+      - name: Install Amplify CLI
+        run: |
+          npm install -g @aws-amplify/cli
+
+      - name: Initialize Amplify Environment
+        run: |
+          amplify pull --accessKeyId $AWS_ACCESS_KEY_ID --secretAccessKey $AWS_SECRET_ACCESS_KEY --region $AWS_REGION --yes
+          npx ampx sandbox --outputs-format json --outputs-version 1.1 --outputs-out-dir ./amplify_outputs
 
       - name: Build Project
         run: npm run build
