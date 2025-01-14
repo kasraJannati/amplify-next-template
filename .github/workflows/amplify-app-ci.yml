@@ -1,7 +1,7 @@
 name: Amplify App CI
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -23,7 +23,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2 # Or your region of choice
+          aws-region: us-east-2
 
       - name: Install Dependencies
         run: npm install
