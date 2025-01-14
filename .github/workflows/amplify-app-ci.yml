@@ -21,5 +21,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Initialize Amplify Environment
+        run: |
+          npm install -g @aws-amplify/cli
+          amplify pull --yes
+
       - name: Build Project
         run: npm run build
