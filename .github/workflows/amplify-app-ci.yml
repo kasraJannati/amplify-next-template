@@ -32,6 +32,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "us-east-2"
 
+      - name: Set AWS_PROFILE Environment Variable
+        run: echo "AWS_PROFILE=amplify" >> $GITHUB_ENV
+
       - name: Install Amplify CLI
         run: |
           npm install -g @aws-amplify/cli
