@@ -21,26 +21,24 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Set AWS Credentials and Region
-        run: |
-          mkdir -p ~/.aws
-          echo "[default]" > ~/.aws/credentials
-          echo "aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-          echo "region = us-east-2" >> ~/.aws/config
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "us-east-2"
+      - name: Install Amplify
+        run: npm install
 
-      - name: Install Amplify CLI
+      - name: Build Backend
         run: |
-          npm install -g @aws-amplify/cli
+          npm ci --cache .npm --prefer-offline
+          npx ampx pipeline-deploy --branch main --app-id d2k8dl28asa29l
 
-      - name: Initialize Amplify Environment (Headless Mode)
-        run: |
-          amplify pull --no-interactive --region $AWS_REGION --profile default --debug
-          npx ampx sandbox --outputs-format json --outputs-version 1.1 --outputs-out-dir ./amplify_outputs
-
-      - name: Build Project
+      - name: Build Frontend
         run: npm run build
+
+      - name: Cache Artifacts
+        uses: actions/cache@v2
+        with:
+          path: |
+            .next/cache
+            .npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
