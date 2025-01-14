@@ -21,19 +21,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Debug AWS Credentials
-        run: cat ~/.aws/credentials
-
-      - name: Setup AWS Credentials for Amplify
+      - name: Create AWS Credentials Directory and Debug
         run: |
           mkdir -p ~/.aws
           echo "[profile default]" > ~/.aws/credentials
           echo "aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
           echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "us-east-2"
+          cat ~/.aws/credentials  # Debug the content of the credentials file
 
       - name: Set AWS_PROFILE Environment Variable
         run: echo "AWS_PROFILE=default" >> $GITHUB_ENV
