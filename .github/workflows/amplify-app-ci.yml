@@ -21,6 +21,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Debug AWS Credentials
+        run: cat ~/.aws/credentials
+
       - name: Setup AWS Credentials for Amplify
         run: |
           mkdir -p ~/.aws
@@ -41,7 +44,7 @@ jobs:
 
       - name: Initialize Amplify Environment (Headless Mode)
         run: |
-          amplify pull --no-interactive --region $AWS_REGION --profile default
+          amplify pull --no-interactive --region $AWS_REGION --profile default --debug
           npx ampx sandbox --outputs-format json --outputs-version 1.1 --outputs-out-dir ./amplify_outputs
 
       - name: Build Project
