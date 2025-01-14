@@ -36,9 +36,9 @@ jobs:
         run: |
           npm install -g @aws-amplify/cli
 
-      - name: Initialize Amplify Environment
+      - name: Initialize Amplify Environment (Headless Mode)
         run: |
-          amplify pull --no-interactive --accessKeyId $AWS_ACCESS_KEY_ID --secretAccessKey $AWS_SECRET_ACCESS_KEY --region $AWS_REGION --yes
+          amplify pull --no-interactive --region $AWS_REGION --profile amplify
           npx ampx sandbox --outputs-format json --outputs-version 1.1 --outputs-out-dir ./amplify_outputs
 
       - name: Build Project
